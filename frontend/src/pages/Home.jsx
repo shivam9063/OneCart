@@ -19,7 +19,15 @@ function Home() {
 
   useEffect(()=>{
     let interval = setInterval(()=>{
-      setHeroCount(prevCount => (prevCount === 3 ? 0 : prevCount + 1));
+      setHeroCount(prevCount => {
+        // Normal progression: 0 -> 1 -> 2 -> 3 -> 0
+        // But for video slides (2 and 3), we'll handle separately
+        if(prevCount === 0) return 1;
+        if(prevCount === 1) return 2;  // Go to first video
+        if(prevCount === 2) return 2;  // Stay on video, don't auto-change
+        if(prevCount === 3) return 3;  // Stay on video, don't auto-change
+        return 0; // fallback
+      });
     },3000);
     return () => clearInterval(interval)
   },[])
@@ -28,7 +36,7 @@ function Home() {
     <div className='overflow-x-hidden relative top-[70px]'>
     <div className=' w-[100vw] lg:h-[100vh] md:h-[50vh] sm:h-[30vh]   bg-gradient-to-l from-[#141414] to-[#0c2025] '>
 
-      <Backgound heroCount={heroCount}/>
+      <Backgound heroCount={heroCount} setHeroCount={setHeroCount}/>
       <Hero
       heroCount={heroCount}
       setHeroCount={setHeroCount}

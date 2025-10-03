@@ -123,7 +123,7 @@ function Collections() {
                 <option value="high-low" className='w-[100%] h-[100%]'>Sort By: High to Low</option>
             </select>
         </div>
-        <div className='lg:w-[80vw] md:w-[60vw]   w-[100vw] min-h-[70vh] flex items-center justify-center flex-wrap gap-[30px]'>
+        <div className='lg:w-[80vw] md:w-[60vw] w-[100vw] min-h-[70vh] flex items-center justify-center flex-wrap gap-[30px] mt-8'>
             {
              filterProduct.map((item,index)=>(
                 <Card key={index} id={item._id} name={item.name} price={item.price} image={item.image1}/>
